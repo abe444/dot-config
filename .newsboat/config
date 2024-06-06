@@ -1,5 +1,8 @@
-# show-read-feeds no
+show-read-feeds no
 auto-reload yes
+
+browser "brave %u"
+macro w set browser "mpv %u" ; open-in-browser ; set browser "brave %u"
 
 bind-key j down
 bind-key k up
@@ -20,7 +23,7 @@ bind-key D pb-download
 bind-key U show-urls
 bind-key x pb-delete
 
-highlight all "---.*---" yellow
+
 highlight feedlist ".*(0/0))" black
 highlight article "(^Feed:.*|^Title:.*|^Author:.*)" cyan default bold
 highlight article "(^Link:.*|^Date:.*)" default default
