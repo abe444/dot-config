@@ -1,4 +1,7 @@
 /* See LICENSE file for copyright and license details. */
+#define VOLUME_STEP 0.1
+#define VOLUME_MAX 1.0
+#include <X11/XF86keysym.h>
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
@@ -16,6 +19,15 @@ static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+};
+
+static const char *up_vol[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+10%",   NULL };
+static const char *down_vol[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-10%",   NULL };
+static const char *mute_vol[] = { "pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle", NULL };
+static const Key vol_keys[] = {
+       { 0, XF86XK_AudioMute,        spawn, {.v = mute_vol } },
+       { 0, XF86XK_AudioLowerVolume, spawn, {.v = down_vol } },
+       { 0, XF86XK_AudioRaiseVolume, spawn, {.v = up_vol } },
 };
 
 /* tagging */
